@@ -452,8 +452,13 @@ const BookingPage: React.FC = () => {
   };
 
   const handleSpecialtySelect = (specialtyId: string) => {
-    setSelectedSpecialty(specialtyId);
-    setValue('specialty', specialtyId);
+    if (selectedSpecialty === specialtyId) {
+      setSelectedSpecialty('');
+      setValue('specialty', '');
+    } else {
+      setSelectedSpecialty(specialtyId);
+      setValue('specialty', specialtyId);
+    }
   };
 
   if (isSubmitted) {

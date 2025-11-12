@@ -360,8 +360,8 @@ const ContactPage: React.FC = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>Besöksadress</h3>
-                  <p>Munkhättevägen 55</p>
-                  <p>147 40 Tumba</p>
+                  <p>Blockvägen 21</p>
+                  <p>147 54 Tumba</p>
                   <p>Sverige</p>
                 </InfoContent>
               </InfoCard>

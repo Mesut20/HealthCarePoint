@@ -25,7 +25,7 @@ const HomeContainer = styled.div`
 const HeroSection = styled.section`
   background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.secondary} 100%);
   color: ${props => props.theme.colors.white};
-  padding: 8rem 0 6rem;
+  padding: 2.5rem 0 2.5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -91,7 +91,7 @@ const ButtonGroup = styled(motion.div)`
   display: flex;
   gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     flex-direction: column;
@@ -100,21 +100,29 @@ const ButtonGroup = styled(motion.div)`
 `;
 
 const PrimaryButton = styled(Link)`
-  background: ${props => props.theme.colors.accent};
-  color: ${props => props.theme.colors.white};
-  padding: 1rem 2rem;
-  border-radius: ${props => props.theme.borderRadius.medium};
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.secondary} 100%);
+  filter: brightness(0.88);
+  color: #fff !important;
+  padding: 0.6rem 1.3rem;
+  font-size: 1.08rem;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 140, 0.18);
+  white-space: nowrap;
 
   &:hover {
-    background: ${props => props.theme.colors.success};
+    filter: brightness(0.92);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 6px 18px rgba(212, 175, 140, 0.28);
+  }
+
+  &:active {
+    filter: brightness(0.75);
+    box-shadow: 0 4px 12px rgba(138, 98, 58, 0.25);
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
@@ -124,24 +132,34 @@ const PrimaryButton = styled(Link)`
 `;
 
 const SecondaryButton = styled(Link)`
-  background: transparent;
-  color: ${props => props.theme.colors.white};
-  padding: 1rem 2rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: ${props => props.theme.borderRadius.medium};
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.secondary} 100%);
+  filter: brightness(0.88);
+  color: #fff !important;
+  padding: 0.6rem 1.3rem;
+  font-size: 1.08rem;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(212, 175, 140, 0.18);
+  white-space: nowrap;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+    filter: brightness(0.92);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(212, 175, 140, 0.28);
+  }
+
+  &:active {
+    filter: brightness(0.75);
+    box-shadow: 0 4px 12px rgba(138, 98, 58, 0.25);
   }
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     width: 200px;
-    text-align: center;
+    justify-content: center;
   }
 `;
 
@@ -356,6 +374,8 @@ const ImageOverlayText = styled.div`
 const HomePage: React.FC = () => {
   const servicesRef = React.useRef(null);
   const servicesInView = useInView(servicesRef, { once: true, margin: '-100px' });
+  const statsRef = React.useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-100px' });
   return (
     <HomeContainer>
       <HeroSection>
@@ -381,21 +401,33 @@ const HomePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <PrimaryButton to="/kontakt">
-              Kontakta oss
-              <Calendar size={20} />
-            </PrimaryButton>
-            <SecondaryButton to="/tjanster">
-              Utforska tjänster
-            </SecondaryButton>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ display: 'inline-flex' }}
+            >
+              <PrimaryButton to="/kontakt">
+                Kontakta oss
+                <Calendar size={20} />
+              </PrimaryButton>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ display: 'inline-flex' }}
+            >
+              <SecondaryButton to="/tjanster">
+                Utforska tjänster
+              </SecondaryButton>
+            </motion.div>
           </ButtonGroup>
 
           {/* Bildrutor med riktiga bilder och skarpa kanter */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', margin: '-2rem 0 2.5rem 0' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', margin: '-2rem 0 2.5rem 0' }}>
             <motion.img
               src={require('../../components/Assets/doctor writing.jpg')}
               alt="Doktor skriver"
-              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              style={{ flexGrow: 1, width: '100%', height: 240, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.85 }}
@@ -403,7 +435,7 @@ const HomePage: React.FC = () => {
             <motion.img
               src={require('../../components/Assets/healthcarepatient.jpg')}
               alt="Patient och vård"
-              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              style={{ flexGrow: 1, width: '100%', height: 240, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.85, delay: 0.5 }}
@@ -411,7 +443,7 @@ const HomePage: React.FC = () => {
             <motion.img
               src={require('../../components/Assets/patientroom.jpg')}
               alt="Patientrum"
-              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              style={{ flexGrow: 1, width: '100%', height: 240, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.85, delay: 1 }}
@@ -419,47 +451,52 @@ const HomePage: React.FC = () => {
             <motion.img
               src={require('../../components/Assets/reception.jpg')}
               alt="Reception"
-              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              style={{ flexGrow: 1, width: '100%', height: 240, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.85, delay: 1.5 }}
             />
           </div>
 
-          <div style={{ marginTop: '1.5rem' }}>
-            <StatsGrid>
-            <StatItem
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+          <div style={{ marginTop: '5.5rem' }}>
+            <StatsGrid ref={statsRef}
+              as={motion.div}
+              initial={{ opacity: 0, y: 40 }}
+              animate={statsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7 }}
             >
-              <StatNumber>30+</StatNumber>
-              <StatLabel>Länder vi hjälper patienter från</StatLabel>
-            </StatItem>
-            <StatItem
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              <StatNumber>100+</StatNumber>
-              <StatLabel>Vårdinrättningar i vårt nätverk</StatLabel>
-            </StatItem>
-            <StatItem
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
-              <StatNumber>10</StatNumber>
-              <StatLabel>Medarbetare inom hälsokonsultation</StatLabel>
-            </StatItem>
-            <StatItem
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-            >
-              <StatNumber>2023</StatNumber>
-              <StatLabel>Grundades i Stockholm</StatLabel>
-            </StatItem>
+              <StatItem
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <StatNumber>30+</StatNumber>
+                <StatLabel>Länder vi hjälper patienter från</StatLabel>
+              </StatItem>
+              <StatItem
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <StatNumber>100+</StatNumber>
+                <StatLabel>Vårdinrättningar i vårt nätverk</StatLabel>
+              </StatItem>
+              <StatItem
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <StatNumber>10</StatNumber>
+                <StatLabel>Medarbetare inom hälsokonsultation</StatLabel>
+              </StatItem>
+              <StatItem
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <StatNumber>2023</StatNumber>
+                <StatLabel>Grundades i Stockholm</StatLabel>
+              </StatItem>
             </StatsGrid>
           </div>
         </HeroContent>

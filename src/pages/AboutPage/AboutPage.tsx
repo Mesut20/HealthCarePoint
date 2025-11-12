@@ -203,46 +203,6 @@ const ValueDescription = styled.p`
   line-height: 1.6;
 `;
 
-const StatsSection = styled.div`
-  background: #f8fafc;
-  padding: 4rem 0;
-  margin: 4rem 0;
-`;
-
-const StatsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-
-  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const StatCard = styled(motion.div)`
-  text-align: center;
-  background: ${props => props.theme.colors.white};
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-`;
-
-const StatNumber = styled.div`
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: ${props => props.theme.colors.primary};
-  margin-bottom: 0.5rem;
-`;
-
-const StatLabel = styled.div`
-  color: ${props => props.theme.colors.textLight};
-  font-weight: 500;
-`;
-
 const TeamGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -539,50 +499,6 @@ const AboutPage: React.FC = () => {
           </ValuesGrid>
         </Container>
       </Section>
-
-      <StatsSection>
-        <Container>
-          <SectionTitle>Health Care Point i siffror</SectionTitle>
-          <StatsGrid>
-            <StatCard
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <StatNumber>30+</StatNumber>
-              <StatLabel>Länder vi stöttar patienter från</StatLabel>
-            </StatCard>
-            <StatCard
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <StatNumber>100+</StatNumber>
-              <StatLabel>Samarbetande vårdinrättningar</StatLabel>
-            </StatCard>
-            <StatCard
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <StatNumber>10</StatNumber>
-              <StatLabel>Medarbetare i Stockholmsteamet</StatLabel>
-            </StatCard>
-            <StatCard
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <StatNumber>2005</StatNumber>
-              <StatLabel>EU-projekterfarenhet sedan</StatLabel>
-            </StatCard>
-          </StatsGrid>
-        </Container>
-      </StatsSection>
 
       <Section>
         <Container>

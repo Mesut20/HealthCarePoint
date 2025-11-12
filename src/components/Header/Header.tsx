@@ -11,6 +11,7 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 1000;
+  min-height: 140px;
 `;
 
 const Nav = styled.nav`
@@ -18,13 +19,13 @@ const Nav = styled.nav`
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 140px;
+  align-items: center;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     padding: 0 1rem;
-    height: 70px;
+    height: 80px;
   }
 `;
 
@@ -41,7 +42,7 @@ const Logo = styled(Link)`
 `;
 
 const LogoImage = styled.img`
-  height: 65px;
+  height: 120px;
   width: auto;
   transition: all 0.3s ease;
   
@@ -58,18 +59,6 @@ const LogoImage = styled.img`
   }
 `;
 
-const LogoText = styled.span`
-  font-family: ${props => props.theme.fonts.heading};
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #8a623a;
-  margin-left: 0.2rem;
-
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: 1.4rem;
-    margin-left: 0.1rem;
-  }
-`;
 
 const NavLinks = styled.div<{ $isOpen: boolean }>`
   display: flex;
@@ -104,8 +93,8 @@ const NavLink = styled(Link).withConfig({ shouldForwardProp: (prop) => prop !== 
   padding: 0.5rem 1.1rem;
   border-radius: 25px;
   transition: all 0.3s ease;
-  background: ${props => props.theme.colors.accent};
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.secondary} 100%);
+  box-shadow: 0 4px 15px rgba(212, 175, 140, 0.18);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -113,14 +102,19 @@ const NavLink = styled(Link).withConfig({ shouldForwardProp: (prop) => prop !== 
   margin-right: ${props => props.$last ? '0.7rem' : '0'};
 
   ${props => props.$isActive && `
-    background: ${props.theme.colors.success};
-    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3);
+    filter: brightness(0.85);
+    box-shadow: 0 6px 18px rgba(212, 175, 140, 0.28);
   `}
 
   &:hover {
-    background: ${props => props.theme.colors.success};
+    filter: brightness(0.92);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 6px 18px rgba(212, 175, 140, 0.28);
+  }
+
+  &:active {
+    filter: brightness(0.75);
+    box-shadow: 0 4px 12px rgba(138, 98, 58, 0.25);
   }
 `;
 
@@ -136,23 +130,29 @@ const CTAButtons = styled.div`
 `;
 
 const BookingButton = styled(Link)`
-  background: ${props => props.theme.colors.accent};
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.secondary} 100%);
   color: ${props => props.theme.colors.white};
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.3rem;
+  font-size: 1.08rem;
   border-radius: 25px;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 15px rgba(212, 175, 140, 0.18);
+  white-space: nowrap;
 
   &:hover {
-    background: ${props => props.theme.colors.success};
+    filter: brightness(0.92);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 18px rgba(212, 175, 140, 0.28);
   }
-  white-space: nowrap;
+
+  &:active {
+    filter: brightness(0.75);
+    box-shadow: 0 4px 12px rgba(138, 98, 58, 0.25);
+  }
 `;
 
 const MobileMenuButton = styled.button`
@@ -206,29 +206,33 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <Nav>
-        <Logo to="/" onClick={() => handleNavClick('/')}>
+        <Logo to="/" onClick={() => handleNavClick('/')}> 
           <LogoImage src={HCPLogo} alt="HealthCarePoint" />
-          <LogoText>HealthCarePoint</LogoText>
         </Logo>
-
-        <NavLinks $isOpen={isMobileMenuOpen}>
+        <NavLinks $isOpen={isMobileMenuOpen} style={{ marginLeft: '1.5rem' }}>
           {navItems.map((item, idx) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              $isActive={location.pathname === item.path}
-              $first={idx === 0}
-              $last={idx === navItems.length - 1}
-              onClick={() => handleNavClick(item.path)}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-
-          <CTAButtons>
             <motion.div
+              key={item.path}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              style={{ display: 'inline-flex' }}
+            >
+              <NavLink
+                to={item.path}
+                $isActive={location.pathname === item.path}
+                $first={idx === 0}
+                $last={idx === navItems.length - 1}
+                onClick={() => handleNavClick(item.path)}
+              >
+                {item.label}
+              </NavLink>
+            </motion.div>
+          ))}
+          <CTAButtons>
+            <motion.div
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.96 }}
+              style={{ display: 'inline-flex' }}
             >
               <BookingButton
                 to="/boka-tid"
@@ -240,7 +244,6 @@ const Header: React.FC = () => {
             </motion.div>
           </CTAButtons>
         </NavLinks>
-
         <MobileMenuButton onClick={toggleMobileMenu}>
           <AnimatePresence mode="wait">
             {isMobileMenuOpen ? (

@@ -291,7 +291,7 @@ const Footer: React.FC = () => {
             </ContactItem>
             <ContactItem>
               <MapPin size={18} />
-              <span>Munkhättevägen 55, 147 40 Tumba</span>
+              <span>Blockvägen 21, 147 54 Tumba</span>
             </ContactItem>
           </ContactInfo>
         </FooterSection>
