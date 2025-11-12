@@ -693,7 +693,7 @@ const BookingPage: React.FC = () => {
                       type="checkbox"
                       {...register('firstVisit')}
                     />
-                    <label>Detta är mitt första besök på HealthCarePoint Estetik & Skönhetsklinik</label>
+                    <label>Detta är mitt första besök via HealthCarePoint</label>
                   </CheckboxGroup>
 
                   <ButtonGroup>

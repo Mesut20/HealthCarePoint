@@ -436,10 +436,11 @@ const AboutPage: React.FC = () => {
 
           <ValuesGrid>
             <ValueCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             >
               <ValueIcon>
                 <Heart size={40} />
@@ -452,10 +453,11 @@ const AboutPage: React.FC = () => {
             </ValueCard>
 
             <ValueCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             >
               <ValueIcon>
                 <Award size={40} />
@@ -468,10 +470,11 @@ const AboutPage: React.FC = () => {
             </ValueCard>
 
             <ValueCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             >
               <ValueIcon>
                 <Shield size={40} />
@@ -484,10 +487,11 @@ const AboutPage: React.FC = () => {
             </ValueCard>
 
             <ValueCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             >
               <ValueIcon>
                 <Users size={40} />
@@ -500,10 +504,11 @@ const AboutPage: React.FC = () => {
             </ValueCard>
 
             <ValueCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             >
               <ValueIcon>
                 <Target size={40} />
@@ -516,10 +521,11 @@ const AboutPage: React.FC = () => {
             </ValueCard>
 
             <ValueCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             >
               <ValueIcon>
                 <Eye size={40} />
@@ -539,33 +545,37 @@ const AboutPage: React.FC = () => {
           <SectionTitle>Health Care Point i siffror</SectionTitle>
           <StatsGrid>
             <StatCard
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             >
               <StatNumber>30+</StatNumber>
               <StatLabel>Länder vi stöttar patienter från</StatLabel>
             </StatCard>
             <StatCard
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             >
               <StatNumber>100+</StatNumber>
               <StatLabel>Samarbetande vårdinrättningar</StatLabel>
             </StatCard>
             <StatCard
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             >
               <StatNumber>10</StatNumber>
               <StatLabel>Medarbetare i Stockholmsteamet</StatLabel>
             </StatCard>
             <StatCard
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             >
               <StatNumber>2005</StatNumber>
               <StatLabel>EU-projekterfarenhet sedan</StatLabel>
@@ -584,10 +594,11 @@ const AboutPage: React.FC = () => {
 
           <TeamGrid>
             <TeamCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             >
               <TeamImage>
                 <Stethoscope size={60} />
@@ -600,10 +611,11 @@ const AboutPage: React.FC = () => {
             </TeamCard>
 
             <TeamCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             >
               <TeamImage>
                 <Brain size={60} />
@@ -616,10 +628,11 @@ const AboutPage: React.FC = () => {
             </TeamCard>
 
             <TeamCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             >
               <TeamImage>
                 <Activity size={60} />
@@ -632,10 +645,11 @@ const AboutPage: React.FC = () => {
             </TeamCard>
 
             <TeamCard
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             >
               <TeamImage>
                 <Users size={60} />
@@ -660,9 +674,10 @@ const AboutPage: React.FC = () => {
 
           <CertGrid>
             <CertCard
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             >
               <CertIcon>
                 <Shield size={30} />
@@ -673,9 +688,10 @@ const AboutPage: React.FC = () => {
             </CertCard>
 
             <CertCard
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             >
               <CertIcon>
                 <Award size={30} />
@@ -686,9 +702,10 @@ const AboutPage: React.FC = () => {
             </CertCard>
 
             <CertCard
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             >
               <CertIcon>
                 <Star size={30} />

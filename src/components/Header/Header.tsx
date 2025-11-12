@@ -62,7 +62,7 @@ const LogoText = styled.span`
   font-family: ${props => props.theme.fonts.heading};
   font-size: 1.8rem;
   font-weight: 700;
-  color: ${props => props.theme.colors.primary};
+  color: #8a623a;
   margin-left: 0.2rem;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {

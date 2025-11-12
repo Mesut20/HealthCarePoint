@@ -331,9 +331,8 @@ const ContactPage: React.FC = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>Telefon</h3>
-                  <p><strong>Växel:</strong> +46 8 123 456 78</p>
-                  <p><strong>Akut:</strong> +46 8 123 456 90</p>
-                  <p><strong>Bokning:</strong> +46 8 123 456 89</p>
+                  <p><strong>Växel:</strong> +46723030125</p>
+                  
                 </InfoContent>
               </InfoCard>
 
@@ -347,9 +346,7 @@ const ContactPage: React.FC = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>E-post</h3>
-                  <p><strong>Allmänt:</strong> info@healthcarepoint.se</p>
-                  <p><strong>Bokning:</strong> bokning@healthcarepoint.se</p>
-                  <p><strong>Support:</strong> support@healthcarepoint.se</p>
+                  <p><strong>Allmänt:</strong> info@hcpab.se</p>
                 </InfoContent>
               </InfoCard>
 
@@ -379,10 +376,10 @@ const ContactPage: React.FC = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>Öppettider</h3>
-                  <p><strong>Mån-Fre:</strong> 08:00 - 17:00</p>
-                  <p><strong>Lördag:</strong> 09:00 - 15:00</p>
-                  <p><strong>Söndag:</strong> 10:00 - 14:00</p>
-                  <p><strong>Akut:</strong> 24/7</p>
+                  <p><strong>Mån-Fre:</strong> 09:00 - 15:00</p>
+                  <p><strong>Lördag:</strong> Stängt</p>
+                  <p><strong>Söndag:</strong> Stängt</p>
+                 
                 </InfoContent>
               </InfoCard>
             </ContactInfo>
@@ -519,7 +516,16 @@ const ContactPage: React.FC = () => {
             Vi finns i Tumba med goda kommunikationer och smidiga parkeringsmöjligheter.
           </p>
           <MapPlaceholder>
-            Interaktiv karta över vårt vårdcenter
+            <iframe
+              title="Karta över vårt vårdcenter"
+              src="https://www.google.com/maps?q=Blockv%C3%A4gen+21,+147+54+Tumba&output=embed"
+              width="100%"
+              height="400"
+              style={{ border: 0, borderRadius: '20px' }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </MapPlaceholder>
         </Container>
       </MapSection>

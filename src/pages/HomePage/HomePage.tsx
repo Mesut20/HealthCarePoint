@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { 
   Heart, 
   Shield, 
@@ -16,7 +16,7 @@ import {
   Star,
   Smile
 } from 'lucide-react';
-import LuxuryRoomImage from '../../components/Assets/luxury-treatment-room.png';
+import LuxuryRoomImage from '../../components/Assets/white people.jpg';
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -336,17 +336,9 @@ const ImagePlaceholder = styled.div`
   position: relative;
   border-radius: ${props => props.theme.borderRadius.large};
   overflow: hidden;
-  background: url(${LuxuryRoomImage}) center/cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%);
-  }
 `;
 
 const ImageOverlayText = styled.div`
@@ -362,6 +354,8 @@ const ImageOverlayText = styled.div`
 `;
 
 const HomePage: React.FC = () => {
+  const servicesRef = React.useRef(null);
+  const servicesInView = useInView(servicesRef, { once: true, margin: '-100px' });
   return (
     <HomeContainer>
       <HeroSection>
@@ -378,9 +372,9 @@ const HomePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Upptäck våra nya tjänster! Från innovativa medicinska behandlingar och avancerade 
-            kirurgiska ingrepp till avkopplande spa-upplevelser - vi guidar dig mot hälsa, 
-            skönhet och välbefinnande med ett dedikerat team av experter.
+            Vi är hälsokonsulten som förenar medicinsk expertis, estetiska resultat och 
+            helhetsfokus. Vårt team i Stockholm stöttar dig genom hela resan – från första 
+            konsultation till färdig behandling hos våra samarbetspartner.
           </HeroSubtitle>
           <ButtonGroup
             initial={{ opacity: 0, y: 30 }}
@@ -396,7 +390,44 @@ const HomePage: React.FC = () => {
             </SecondaryButton>
           </ButtonGroup>
 
-          <StatsGrid>
+          {/* Bildrutor med riktiga bilder och skarpa kanter */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', margin: '-2rem 0 2.5rem 0' }}>
+            <motion.img
+              src={require('../../components/Assets/doctor writing.jpg')}
+              alt="Doktor skriver"
+              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.85 }}
+            />
+            <motion.img
+              src={require('../../components/Assets/healthcarepatient.jpg')}
+              alt="Patient och vård"
+              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.85, delay: 0.5 }}
+            />
+            <motion.img
+              src={require('../../components/Assets/patientroom.jpg')}
+              alt="Patientrum"
+              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.85, delay: 1 }}
+            />
+            <motion.img
+              src={require('../../components/Assets/reception.jpg')}
+              alt="Reception"
+              style={{ width: 380, height: 228, objectFit: 'cover', borderRadius: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.85, delay: 1.5 }}
+            />
+          </div>
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <StatsGrid>
             <StatItem
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -429,7 +460,8 @@ const HomePage: React.FC = () => {
               <StatNumber>2023</StatNumber>
               <StatLabel>Grundades i Stockholm</StatLabel>
             </StatItem>
-          </StatsGrid>
+            </StatsGrid>
+          </div>
         </HeroContent>
       </HeroSection>
 
@@ -442,11 +474,11 @@ const HomePage: React.FC = () => {
             överträffar dina förväntningar.
           </SectionSubtitle>
 
-          <ServicesGrid>
+          <ServicesGrid ref={servicesRef}>
             <ServiceCard
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <ServiceIcon>
@@ -462,7 +494,7 @@ const HomePage: React.FC = () => {
             <ServiceCard
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <ServiceIcon>
@@ -478,7 +510,7 @@ const HomePage: React.FC = () => {
             <ServiceCard
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <ServiceIcon>
@@ -494,7 +526,7 @@ const HomePage: React.FC = () => {
             <ServiceCard
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <ServiceIcon>
@@ -510,7 +542,7 @@ const HomePage: React.FC = () => {
             <ServiceCard
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <ServiceIcon>
@@ -526,7 +558,7 @@ const HomePage: React.FC = () => {
             <ServiceCard
               whileHover={{ y: -10 }}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <ServiceIcon>
@@ -546,9 +578,7 @@ const HomePage: React.FC = () => {
         <Container>
           <SectionTitle>Varför välja Health Care Point AB?</SectionTitle>
           <SectionSubtitle>
-            Vi är hälsokonsulten som förenar medicinsk expertis, estetiska resultat och 
-            helhetsfokus. Vårt team i Stockholm stöttar dig genom hela resan – från första 
-            konsultation till färdig behandling hos våra samarbetspartner.
+            Välj Health Care Point AB för ett tryggt och personligt omhändertagande. Vi erbjuder innovativa medicinska behandlingar, avancerad kirurgi och avkopplande spa-upplevelser. Vårt engagerade team guidar dig mot hälsa, skönhet och välbefinnande med fokus på kvalitet, säkerhet och omtanke.
           </SectionSubtitle>
 
           <FeaturesGrid>
@@ -625,7 +655,12 @@ const HomePage: React.FC = () => {
             </FeaturesList>
 
             <ImagePlaceholder>
-              <ImageOverlayText>
+              <img 
+                src={LuxuryRoomImage}
+                alt="Hälsa, skönhet och välbefinnande"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
+              />
+              <ImageOverlayText style={{ position: 'absolute', left: 0, bottom: 0 }}>
                 Hälsa, skönhet och välbefinnande
               </ImageOverlayText>
             </ImagePlaceholder>

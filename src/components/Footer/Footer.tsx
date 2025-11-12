@@ -8,7 +8,6 @@ import {
   MapPin, 
   Facebook, 
   Instagram, 
-  Linkedin,
   Clock,
   Shield,
   Award,
@@ -38,10 +37,13 @@ const FooterContent = styled.div`
   }
 `;
 
-const FooterSection = styled.div`
+const FooterSection = styled.div<{
+  extraMarginTop?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  ${props => props.extraMarginTop ? 'margin-top: -192px;' : ''}
 `;
 
 const SectionTitle = styled.h3`
@@ -81,11 +83,6 @@ const FooterLogoImage = styled.img`
   }
 `;
 
-const Description = styled.p`
-  font-size: 1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
-`;
 
 const ContactInfo = styled.div`
   display: flex;
@@ -211,11 +208,6 @@ const Footer: React.FC = () => {
           <Logo>
             <FooterLogoImage src={HCPLogo} alt="HealthCarePoint" />
           </Logo>
-          <Description>
-            HealthCarePoint Estetik & Skönhetsklinik - Din destination för avancerad 
-            estetisk medicin och lyxiga skönhetsbehandlingar. Vi kombinerar medicinsk 
-            expertis med de senaste teknologierna för naturliga, vackra resultat.
-          </Description>
           <SocialLinks>
             <SocialLink
               href="https://facebook.com"
@@ -235,15 +227,6 @@ const Footer: React.FC = () => {
             >
               <Instagram size={20} />
             </SocialLink>
-            <SocialLink
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Linkedin size={20} />
-            </SocialLink>
           </SocialLinks>
         </FooterSection>
 
@@ -253,7 +236,6 @@ const Footer: React.FC = () => {
             <QuickLink to="/" onClick={handleQuickLinkClick}>Hem</QuickLink>
             <QuickLink to="/om-oss" onClick={handleQuickLinkClick}>Om Oss</QuickLink>
             <QuickLink to="/tjanster" onClick={handleQuickLinkClick}>Våra Tjänster</QuickLink>
-            <QuickLink to="/nyheter" onClick={handleQuickLinkClick}>Nyheter</QuickLink>
             <QuickLink to="/kontakt" onClick={handleQuickLinkClick}>Kontakt</QuickLink>
             <QuickLink to="/boka-tid" onClick={handleQuickLinkClick}>Boka Tid</QuickLink>
           </QuickLinks>
@@ -275,24 +257,6 @@ const Footer: React.FC = () => {
         </FooterSection>
 
         <FooterSection>
-          <SectionTitle>Kontaktinformation</SectionTitle>
-          <ContactInfo>
-            <ContactItem>
-              <Phone size={18} />
-              <span>+46723030125</span>
-            </ContactItem>
-            <ContactItem>
-              <Mail size={18} />
-              <span>info@hcpab.se</span>
-            </ContactItem>
-            <ContactItem>
-              <MapPin size={18} />
-              <span>Munkhättevägen 55, 147 40 Tumba</span>
-            </ContactItem>
-          </ContactInfo>
-        </FooterSection>
-
-        <FooterSection>
           <SectionTitle>Öppettider</SectionTitle>
           <WorkingHours>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
@@ -311,15 +275,30 @@ const Footer: React.FC = () => {
               <span>Söndag:</span>
               <span>Stängt</span>
             </WorkingDay>
-            <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.7)' }}>
-              * Akut mottagning 24/7
-            </div>
           </WorkingHours>
+        </FooterSection>
+
+  <FooterSection style={{marginTop: '-228px'}}>
+          <SectionTitle>Kontaktinformation</SectionTitle>
+          <ContactInfo>
+            <ContactItem>
+              <Phone size={18} />
+              <span>+46723030125</span>
+            </ContactItem>
+            <ContactItem>
+              <Mail size={18} />
+              <span>info@hcpab.se</span>
+            </ContactItem>
+            <ContactItem>
+              <MapPin size={18} />
+              <span>Munkhättevägen 55, 147 40 Tumba</span>
+            </ContactItem>
+          </ContactInfo>
         </FooterSection>
       </FooterContent>
 
       <FooterBottom>
-        <p>© {currentYear} HealthCarePoint Estetik & Skönhetsklinik AB. Alla rättigheter förbehållna. | Organisationsnummer: 556789-1234</p>
+  <p>© {currentYear} HealthCarePoint AB. Alla rättigheter förbehållna. </p>
       </FooterBottom>
     </FooterContainer>
   );
