@@ -352,8 +352,10 @@ const AboutPage: React.FC = () => {
           </StoryGrid>
 
           <StoryGrid style={{ flexDirection: 'row-reverse' }}>
-            <StoryContent>
-              <h3>{t.about_7}</h3>
+            <StoryContent> 
+              
+              <h3>{t.about_6}</h3>
+              <p>{t.about_7}</p>
               <p>{t.about_8}</p>
               <p>{t.about_9}</p>
             </StoryContent>
@@ -587,8 +589,8 @@ const AboutPage: React.FC = () => {
               <CertIcon>
                 <Award size={30} />
               </CertIcon>
-              <h3 style={{ marginBottom: '1rem' }}>{t.about_43}</h3>
-              <p>{t.about_44}</p>
+              <h3 style={{ marginBottom: '1rem' }}>{t.about_45}</h3>
+              <p>{t.about_46}</p>
             </CertCard>
 
             <CertCard
