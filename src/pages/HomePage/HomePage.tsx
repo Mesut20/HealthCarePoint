@@ -91,7 +91,7 @@ const ButtonGroup = styled(motion.div)`
   display: flex;
   gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 6rem;
+  margin-bottom: 7rem;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     flex-direction: column;

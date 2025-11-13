@@ -142,9 +142,10 @@ const SocialLink = styled(motion.a)`
   backdrop-filter: blur(10px);
 
   &:hover {
-    background: ${props => props.theme.colors.accent};
+    background: linear-gradient(135deg, #d4af8c 0%, #8a623a 100%);
+    color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 4px 15px rgba(138, 98, 58, 0.18);
   }
 `;
 

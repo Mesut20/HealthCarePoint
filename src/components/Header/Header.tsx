@@ -33,7 +33,7 @@ const Logo = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  margin-left: 9rem;
+  margin-left: 4.5rem;
   transition: transform 0.2s ease;
 
   &:hover {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
@@ -438,9 +439,40 @@ const BookingPage: React.FC = () => {
   ];
 
   const onSubmit = async (data: BookingFormData) => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log('Booking data:', data);
-    setIsSubmitted(true);
+    // Skapa ett slumpmässigt 4-siffrigt ärendenummer
+    const caseNumber = Math.floor(1000 + Math.random() * 9000);
+
+    // Skapa e-postmeddelande
+    const emailParams = {
+      to_email: 'info@hcpab.se',
+      subject: `Ny bokning #${caseNumber}`,
+      message: `En ny bokning har gjorts via HealthCarePoint.\n\nÄrendenummer: ${caseNumber}\n\n` +
+        `Förnamn: ${data.firstName}\n` +
+        `Efternamn: ${data.lastName}\n` +
+        `E-post: ${data.email}\n` +
+        `Telefon: ${data.phone}\n` +
+        `Personnummer: ${data.personnummer}\n` +
+        `Tjänst: ${data.specialty}\n` +
+        `Läkare: ${data.doctor || '-'}\n` +
+        `Datum: ${data.date || '-'}\n` +
+        `Tid: ${data.time || '-'}\n` +
+        `Försäkring: ${data.insurance || '-'}\n` +
+        `Första besök: ${data.firstVisit ? 'Ja' : 'Nej'}\n` +
+        `Önskemål/mål: ${data.reason || '-'}\n`,
+    };
+
+    // Skicka e-post via EmailJS
+    try {
+      await emailjs.send(
+        'default_service', // Byt till din EmailJS service ID
+        'template_bokning', // Byt till din EmailJS template ID
+        emailParams,
+        'user_xxxxxxxxxxxxxxxx' // Byt till din EmailJS user/public key
+      );
+      setIsSubmitted(true);
+    } catch (error) {
+      alert('Kunde inte skicka bokningen. Försök igen senare.');
+    }
   };
 
   const nextStep = () => {

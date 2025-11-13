@@ -265,7 +265,8 @@ const MapSection = styled.div`
 `;
 
 const MapPlaceholder = styled.div`
-  width: 100%;
+  width: 600px;
+  max-width: 100%;
   height: 400px;
   background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.secondary} 100%);
   border-radius: 20px;
@@ -274,7 +275,7 @@ const MapPlaceholder = styled.div`
   justify-content: center;
   color: ${props => props.theme.colors.white};
   font-size: 1.2rem;
-  margin-top: 2rem;
+  margin: 2rem auto 0 auto;
 `;
 
 const ContactPage: React.FC = () => {
@@ -515,13 +516,13 @@ const ContactPage: React.FC = () => {
           }}>
             Vi finns i Tumba med goda kommunikationer och smidiga parkeringsmöjligheter.
           </p>
-          <MapPlaceholder>
+          <MapPlaceholder style={{ justifyContent: 'center' }}>
             <iframe
               title="Karta över vårt vårdcenter"
               src="https://www.google.com/maps?q=Blockv%C3%A4gen+21,+147+54+Tumba&output=embed"
-              width="100%"
+              width="600"
               height="400"
-              style={{ border: 0, borderRadius: '20px' }}
+              style={{ border: 0, borderRadius: '20px', maxWidth: '100%' }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
