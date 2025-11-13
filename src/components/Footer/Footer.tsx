@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
+import sv from '../../locals/sv.json';
+import en from '../../locals/en.json';
+import tr from '../../locals/tr.json';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -194,7 +198,14 @@ const FooterBottom = styled.div`
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  
+  // Use context for language
+  const { language } = useLanguage();
+  const t = useMemo(() => {
+    if (language === 'tr') return tr;
+    if (language === 'en') return en;
+    return sv;
+  }, [language]);
+
   const handleQuickLinkClick = () => {
     window.scrollTo({
       top: 0,
@@ -232,74 +243,73 @@ const Footer: React.FC = () => {
         </FooterSection>
 
         <FooterSection>
-          <SectionTitle>Snabblänkar</SectionTitle>
+          <SectionTitle>{t.footer_1 || 'Snabblänkar'}</SectionTitle>
           <QuickLinks>
-            <QuickLink to="/" onClick={handleQuickLinkClick}>Hem</QuickLink>
-            <QuickLink to="/om-oss" onClick={handleQuickLinkClick}>Om Oss</QuickLink>
-            <QuickLink to="/tjanster" onClick={handleQuickLinkClick}>Våra Tjänster</QuickLink>
-            <QuickLink to="/kontakt" onClick={handleQuickLinkClick}>Kontakt</QuickLink>
-            <QuickLink to="/boka-tid" onClick={handleQuickLinkClick}>Boka Tid</QuickLink>
+            <QuickLink to="/" onClick={handleQuickLinkClick}>{t.footer_2 || 'Hem'}</QuickLink>
+            <QuickLink to="/om-oss" onClick={handleQuickLinkClick}>{t.footer_3 || 'Om Oss'}</QuickLink>
+            <QuickLink to="/tjanster" onClick={handleQuickLinkClick}>{t.footer_4 || 'Våra Tjänster'}</QuickLink>
+            <QuickLink to="/kontakt" onClick={handleQuickLinkClick}>{t.footer_5 || 'Kontakt'}</QuickLink>
+            <QuickLink to="/boka-tid" onClick={handleQuickLinkClick}>{t.footer_6 || 'Boka Tid'}</QuickLink>
           </QuickLinks>
 
           <CertificationBadges>
             <Badge>
               <Shield size={18} />
-              <span>Säkra behandlingar</span>
+              <span>{t.footer_7 || 'Säkra behandlingar'}</span>
             </Badge>
             <Badge>
               <Award size={18} />
-              <span>Certifierade estetiska behandlingar</span>
+              <span>{t.footer_8 || 'Certifierade estetiska behandlingar'}</span>
             </Badge>
             <Badge>
               <Users size={18} />
-              <span>Auktoriserad personal</span>
+              <span>{t.footer_9 || 'Auktoriserad personal'}</span>
             </Badge>
           </CertificationBadges>
         </FooterSection>
 
         <FooterSection>
-          <SectionTitle>Öppettider</SectionTitle>
+          <SectionTitle>{t.footer_10 || 'Öppettider'}</SectionTitle>
           <WorkingHours>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
               <Clock size={18} />
-              <span style={{ fontWeight: '500' }}>Mottagning</span>
             </div>
             <WorkingDay>
-              <span>Måndag - Fredag:</span>
-              <span>09:00 - 15:00</span>
+              <span>{t.footer_12 || 'Måndag - Fredag:'}</span>
+              <span>{t.footer_13 || '09:00 - 15:00'}</span>
             </WorkingDay>
             <WorkingDay>
-              <span>Lördag:</span>
-              <span>Stängt</span>
+              <span>{t.footer_14 || 'Lördag:'}</span>
+              <span>{t.footer_15 || 'Stängt'}</span>
             </WorkingDay>
             <WorkingDay>
-              <span>Söndag:</span>
-              <span>Stängt</span>
+              <span>{t.footer_16 || 'Söndag:'}</span>
+              <span>{t.footer_17 || 'Stängt'}</span>
             </WorkingDay>
           </WorkingHours>
         </FooterSection>
 
-  <FooterSection style={{marginTop: '-228px'}}>
-          <SectionTitle>Kontaktinformation</SectionTitle>
+        <FooterSection style={{marginTop: '-228px'}}>
+          <SectionTitle>{t.footer_18 || 'Kontaktinformation'}</SectionTitle>
           <ContactInfo>
             <ContactItem>
               <Phone size={18} />
-              <span>+46723030125</span>
+              <span>{t.footer_19 || '+46723030125'}</span>
             </ContactItem>
             <ContactItem>
               <Mail size={18} />
-              <span>info@hcpab.se</span>
+              <span>{t.footer_20 || 'info@hcpab.se'}</span>
             </ContactItem>
             <ContactItem>
               <MapPin size={18} />
-              <span>Blockvägen 21, 147 54 Tumba</span>
+              <span>{t.footer_21 || 'Blockvägen 21, 147 54 Tumba'}</span>
             </ContactItem>
           </ContactInfo>
         </FooterSection>
       </FooterContent>
 
       <FooterBottom>
-  <p>© {currentYear} HealthCarePoint AB. Alla rättigheter förbehållna. </p>
+        <p>© {currentYear} HealthCarePoint AB. {t.footer_22 || 'Alla rättigheter förbehållna.'} </p>
       </FooterBottom>
     </FooterContainer>
   );

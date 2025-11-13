@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import sv from '../../locals/sv.json';
+import en from '../../locals/en.json';
+import tr from '../../locals/tr.json';
+import { useLanguage } from '../../context/LanguageContext';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -391,50 +395,38 @@ const BookingPage: React.FC = () => {
     setValue
   } = useForm<BookingFormData>();
 
+  // Use LanguageContext for instant language switching
+  const { language } = useLanguage();
+  const t = language === 'tr' ? tr : language === 'en' ? en : sv;
+
   const specialties = [
     {
       id: 'skonhet',
-      name: 'Skönhet',
-      description: 'Skräddarsydd skönhetskonsultation för individuella resultat.',
+      name: t.booking_12,
+      description: t.booking_13,
       icon: Sparkles,
-      highlights: [
-        'Individuellt anpassad rådgivning med fokus på dina mål.',
-        'Experthjälp för att navigera bland behandlingar och produkter.',
-        'Personlig vägledning för stärkt självförtroende och välmående.'
-      ]
+      highlights: [t.booking_14, t.booking_15, t.booking_16]
     },
     {
       id: 'medicin',
-      name: 'Medicin',
-      description: 'Avancerade medicinska behandlingar av erfarna specialistläkare.',
+      name: t.booking_17,
+      description: t.booking_18,
       icon: Shield,
-      highlights: [
-        'Behandlingar för hudtillstånd, åldrande och medicinska behov.',
-        'Tillgång till den senaste medicinska tekniken och metoderna.',
-        'Planer som anpassas efter individuella behov och mål.'
-      ]
+      highlights: [t.booking_19, t.booking_20, t.booking_21]
     },
     {
       id: 'relax',
-      name: 'Relax',
-      description: 'Spa- och wellnessupplevelser för återhämtning och balans.',
+      name: t.booking_22,
+      description: t.booking_23,
       icon: Smile,
-      highlights: [
-        'Personlig omvårdnad från vårt dedikerade spa-team.',
-        'Skräddarsydda ritualer för välbefinnande och sinnesfrid.',
-        'Möjlighet att koppla av från vardagens stress och påfrestningar.'
-      ]
+      highlights: [t.booking_24, t.booking_25, t.booking_26]
     },
     {
       id: 'kirurgi',
-      name: 'Kirurgi',
-      description: 'Kirurgiska skönhetsbehandlingar med trygg uppföljning.',
+      name: t.booking_27,
+      description: t.booking_28,
       icon: Scissors,
-      highlights: [
-        'Tillgång till avancerade kirurgiska tekniker och metoder.',
-        'Personlig konsultation och behandlingsplanering utifrån dina mål.',
-        'Professionell eftervård för ett säkert och framgångsrikt resultat.'
-      ]
+      highlights: [t.booking_29, t.booking_30, t.booking_31]
     }
   ];
 
@@ -504,17 +496,18 @@ const BookingPage: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <CheckCircle size={80} style={{ margin: '0 auto 2rem' }} />
-              <h2>Bokning bekräftad!</h2>
+              <h2>{t.booking_54}</h2>
               <p>
-                Din bokning har mottagits och vi kommer att kontakta dig inom 24 timmar 
-                för att bekräfta din tid. Ett bekräftelsemeddelande har skickats till din e-post.
+                {t.booking_55}
+                <br />
+                {t.booking_56}
               </p>
               <Button
                 variant="secondary"
                 onClick={() => window.location.href = '/'}
                 style={{ background: 'rgba(255, 255, 255, 0.2)', color: 'white', border: 'none' }}
               >
-                Tillbaka till startsidan
+                {t.booking_57}
               </Button>
             </ConfirmationCard>
           </Container>
@@ -532,15 +525,14 @@ const BookingPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Boka din behandling
+            {t.booking_1}
           </HeroTitle>
           <HeroSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Välj mellan skönhet, medicin, relax och kirurgi. Vi återkommer inom 24 timmar 
-            för att bekräfta din bokning och planera nästa steg tillsammans.
+            {t.booking_2}
           </HeroSubtitle>
         </Container>
       </HeroSection>
@@ -550,25 +542,25 @@ const BookingPage: React.FC = () => {
           <BookingCard>
             <StepIndicator>
               <Step active={currentStep === 1} completed={currentStep > 1}>
-                <span>1</span>
-                <span>Välj behandling</span>
+                <span>{t.booking_3}</span>
+                <span>{t.booking_4}</span>
               </Step>
               <Step active={currentStep === 2} completed={currentStep > 2}>
-                <span>2</span>
-                <span>Kontaktuppgifter</span>
+                <span>{t.booking_5}</span>
+                <span>{t.booking_6}</span>
               </Step>
               <Step active={currentStep === 3} completed={currentStep > 3}>
-                <span>3</span>
-                <span>Bekräftelse</span>
+                <span>{t.booking_7}</span>
+                <span>{t.booking_8}</span>
               </Step>
             </StepIndicator>
 
             <StepContent>
               {currentStep === 1 && (
                 <div>
-                  <StepTitle>Välj din tjänst</StepTitle>
+                  <StepTitle>{t.booking_10}</StepTitle>
                   <StepSubtitle>
-                    Börja med att välja den kategori som bäst matchar dina behov så tar vi fram rätt lösning tillsammans.
+                    {t.booking_11}
                   </StepSubtitle>
                   
                   <SpecialtyGrid>
@@ -606,7 +598,7 @@ const BookingPage: React.FC = () => {
                       onClick={nextStep}
                       disabled={!selectedSpecialty}
                     >
-                      Nästa <ArrowRight size={20} />
+                      {t.booking_32} <ArrowRight size={20} />
                     </Button>
                   </ButtonGroup>
                 </div>
@@ -614,45 +606,45 @@ const BookingPage: React.FC = () => {
 
               {currentStep === 2 && (
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <StepTitle>Kontaktuppgifter</StepTitle>
+                  <StepTitle>{t.booking_34}</StepTitle>
                   <StepSubtitle>
-                    Fyll i dina uppgifter så kontaktar vi dig med förslag på upplägg för den tjänst du har valt.
+                    {t.booking_35}
                   </StepSubtitle>
 
                   <input
                     type="hidden"
                     value={selectedSpecialty}
-                    {...register('specialty', { required: 'Välj en tjänst innan du skickar bokningen' })}
+                    {...register('specialty', { required: t.booking_10 })}
                   />
 
                   <FormGrid>
                     <FormGroup>
-                      <Label>Förnamn *</Label>
+                      <Label>{t.booking_36}</Label>
                       <Input
                         type="text"
                         hasError={!!errors.firstName}
-                        {...register('firstName', { required: 'Förnamn är obligatoriskt' })}
+                        {...register('firstName', { required: t.booking_36 })}
                       />
                       {errors.firstName && <ErrorMessage>{errors.firstName.message}</ErrorMessage>}
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>Efternamn *</Label>
+                      <Label>{t.booking_37}</Label>
                       <Input
                         type="text"
                         hasError={!!errors.lastName}
-                        {...register('lastName', { required: 'Efternamn är obligatoriskt' })}
+                        {...register('lastName', { required: t.booking_37 })}
                       />
                       {errors.lastName && <ErrorMessage>{errors.lastName.message}</ErrorMessage>}
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>E-post *</Label>
+                      <Label>{t.booking_38}</Label>
                       <Input
                         type="email"
                         hasError={!!errors.email}
                         {...register('email', { 
-                          required: 'E-post är obligatorisk',
+                          required: t.booking_38,
                           pattern: { value: /^\S+@\S+$/i, message: 'Ogiltig e-postadress' }
                         })}
                       />
@@ -660,30 +652,30 @@ const BookingPage: React.FC = () => {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>Telefon *</Label>
+                      <Label>{t.booking_39}</Label>
                       <Input
                         type="tel"
                         hasError={!!errors.phone}
-                        {...register('phone', { required: 'Telefonnummer är obligatoriskt' })}
+                        {...register('phone', { required: t.booking_39 })}
                       />
                       {errors.phone && <ErrorMessage>{errors.phone.message}</ErrorMessage>}
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>Personnummer *</Label>
+                      <Label>{t.booking_40}</Label>
                       <Input
                         type="text"
-                        placeholder="YYYYMMDD-XXXX"
+                        placeholder={t.booking_41}
                         hasError={!!errors.personnummer}
-                        {...register('personnummer', { required: 'Personnummer är obligatoriskt' })}
+                        {...register('personnummer', { required: t.booking_40 })}
                       />
                       {errors.personnummer && <ErrorMessage>{errors.personnummer.message}</ErrorMessage>}
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>Försäkring</Label>
+                      <Label>{t.booking_42}</Label>
                       <Select {...register('insurance')}>
-                        <option value="">Välj försäkring</option>
+                        <option value="">{t.booking_43}</option>
                         <option value="folksam">Folksam</option>
                         <option value="if">If</option>
                         <option value="trygg-hansa">Trygg-Hansa</option>
@@ -693,7 +685,7 @@ const BookingPage: React.FC = () => {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>Önskad datum</Label>
+                      <Label>{t.booking_44}</Label>
                       <Input
                         type="date"
                         min={new Date().toISOString().split('T')[0]}
@@ -702,9 +694,9 @@ const BookingPage: React.FC = () => {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label>Önskad tid</Label>
+                      <Label>{t.booking_46}</Label>
                       <Select {...register('time')}>
-                        <option value="">Välj tid</option>
+                        <option value="">{t.booking_47}</option>
                         <option value="08:00">08:00</option>
                         <option value="09:00">09:00</option>
                         <option value="10:00">10:00</option>
@@ -717,9 +709,9 @@ const BookingPage: React.FC = () => {
                     </FormGroup>
 
                     <FormGroup className="full-width">
-                      <Label>Önskemål och mål</Label>
+                      <Label>{t.booking_48}</Label>
                       <TextArea
-                        placeholder="Berätta om dina mål, önskemål och frågor inför den valda tjänsten..."
+                        placeholder={t.booking_49}
                         {...register('reason')}
                       />
                     </FormGroup>
@@ -730,15 +722,15 @@ const BookingPage: React.FC = () => {
                       type="checkbox"
                       {...register('firstVisit')}
                     />
-                    <label>Detta är mitt första besök via HealthCarePoint</label>
+                    <label>{t.booking_50}</label>
                   </CheckboxGroup>
 
                   <ButtonGroup>
                     <Button variant="secondary" type="button" onClick={prevStep}>
-                      <ArrowLeft size={20} /> Tillbaka
+                      <ArrowLeft size={20} /> {t.booking_51}
                     </Button>
                     <Button variant="primary" type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? 'Skickar...' : 'Skicka bokning'}
+                      {isSubmitting ? t.booking_52 : t.booking_52}
                       <CheckCircle size={20} />
                     </Button>
                   </ButtonGroup>

@@ -1,5 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import sv from '../../locals/sv.json';
+import en from '../../locals/en.json';
+import tr from '../../locals/tr.json';
+import { useLanguage } from '../../context/LanguageContext';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import {
@@ -10,13 +14,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 
-interface ServiceItem {
-  category: string;
-  title: string;
-  description: string;
-  points: string[];
-  icon: React.ElementType;
-}
+
 
 const ServicesContainer = styled.div`
   width: 100%;
@@ -222,51 +220,47 @@ const BookButton = styled.button`
   }
 `;
 
-const services: ServiceItem[] = [
-  {
-    category: 'Skönhet',
-    title: 'Skräddarsydd Skönhetskonsultation',
-    description: 'Individuellt anpassad rådgivning för att uppnå önskade skönhetsresultat.',
-    points: [
-      'Experthjälp för att navigera genom olika skönhetsbehandlingar och produkter.',
-      'Personlig vägledning för att förbättra självförtroendet och välmåendet.'
-    ],
-    icon: Sparkles
-  },
-  {
-    category: 'Medicin',
-    title: 'Avancerade Medicinska Behandlingar',
-    description: 'Avancerade medicinska behandlingar utförda av erfarna läkare och specialister för att behandla olika hudtillstånd, åldrande och andra medicinska problem.',
-    points: [
-      'Tillgång till den senaste medicinska tekniken och behandlingsmetoderna.',
-      'Personligt anpassade behandlingsplaner baserade på individuella behov och mål.'
-    ],
-    icon: Shield
-  },
-  {
-    category: 'Relax',
-    title: 'Spa och Wellness Upplevelser',
-    description: 'Personlig uppmärksamhet och vård från vårt erfarna spa-team.',
-    points: [
-      'Förbättrat välbefinnande och sinnesfrid genom skräddarsydda behandlingar och ritualer.',
-      'Möjlighet att koppla av och återhämta sig från vardagens stress och påfrestningar.'
-    ],
-    icon: Smile
-  },
-  {
-    category: 'Kirurgi',
-  title: 'Kirurgiska Skönhetsbehandlingar',
-    description: 'Tillgång till avancerade kirurgiska tekniker och metoder för att uppnå önskade estetiska resultat.',
-    points: [
-      'Personlig konsultation och behandlingsplanering för att säkerställa kundens förväntningar och mål.',
-      'Professionell vård och eftervård för att säkerställa en säker och framgångsrik behandling.'
-    ],
-    icon: Scissors
-  }
-];
+const serviceIcons = [Sparkles, Shield, Smile, Scissors];
+
 
 const ServicesPage: React.FC = () => {
   const navigate = useNavigate();
+
+  // Use LanguageContext for instant language switching
+  const { language } = useLanguage();
+  const t = language === 'tr' ? tr : language === 'en' ? en : sv;
+
+  // Bygg services-arrayen dynamiskt från översättningsfilen
+  const services = [
+    {
+      category: t.services_5,
+      title: t.services_6,
+      description: t.services_7,
+      points: [t.services_8, t.services_9],
+      icon: serviceIcons[0]
+    },
+    {
+      category: t.services_11,
+      title: t.services_12,
+      description: t.services_13,
+      points: [t.services_14, t.services_15],
+      icon: serviceIcons[1]
+    },
+    {
+      category: t.services_17,
+      title: t.services_18,
+      description: t.services_19,
+      points: [t.services_20, t.services_21],
+      icon: serviceIcons[2]
+    },
+    {
+      category: t.services_23,
+      title: t.services_24,
+      description: t.services_25,
+      points: [t.services_26, t.services_27],
+      icon: serviceIcons[3]
+    }
+  ];
 
   const handleBookingClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -284,37 +278,36 @@ const ServicesPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Tjänster
+            {t.services_1}
           </HeroTitle>
           <HeroSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Välj mellan våra tjänster inom skönhet, medicin, relax och kirurgi. Vi guidar dig genom varje steg för att du tryggt ska nå dina mål.
+            {t.services_2}
           </HeroSubtitle>
         </Container>
       </HeroSection>
 
       <Section>
         <Container>
-          <SectionTitle>Ett urval av våra tjänster</SectionTitle>
+          <SectionTitle>{t.services_3}</SectionTitle>
           <SectionSubtitle>
-            Här hittar du kärnan i vårt erbjudande. Utforska och boka det som passar dig bäst.
+            {t.services_4}
           </SectionSubtitle>
 
           <ServicesGrid>
             {services.map((service, index) => {
               const IconComponent = service.icon;
-
               return (
                 <ServiceCard
-              key={service.title}
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+                  key={service.title}
+                  whileHover={{ y: -10 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <ServiceHeader>
                     <ServiceIcon>
@@ -338,7 +331,7 @@ const ServicesPage: React.FC = () => {
                     </ServiceFeatures>
                   </ServiceContent>
 
-                  <BookButton onClick={handleBookingClick}>Boka nu</BookButton>
+                  <BookButton onClick={handleBookingClick}>{t.services_10 || 'Boka nu'}</BookButton>
                 </ServiceCard>
               );
             })}

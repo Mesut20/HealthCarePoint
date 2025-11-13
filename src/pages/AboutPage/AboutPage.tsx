@@ -1,4 +1,8 @@
 import React from 'react';
+import sv from '../../locals/sv.json';
+import en from '../../locals/en.json';
+import tr from '../../locals/tr.json';
+import { useLanguage } from '../../context/LanguageContext';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { 
@@ -302,6 +306,10 @@ const CertIcon = styled.div`
 `;
 
 const AboutPage: React.FC = () => {
+  // Use LanguageContext for instant language switching
+  const { language } = useLanguage();
+  const t = language === 'tr' ? tr : language === 'en' ? en : sv;
+
   return (
     <AboutContainer>
       <HeroSection>
@@ -311,16 +319,14 @@ const AboutPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Om Health Care Point AB
+            {t.about_1}
           </HeroTitle>
           <HeroSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Vi är hälsokonsulten som sedan 2023 guidar patienter i Norden och Europa 
-            till certifierade sjukhus och kliniker genom ett omfattande nätverk inom 
-            hälsoturism.
+            {t.about_2}
           </HeroSubtitle>
         </Container>
       </HeroSection>
@@ -329,20 +335,9 @@ const AboutPage: React.FC = () => {
         <Container>
           <StoryGrid>
             <StoryContent>
-              <h3>Vår historia</h3>
-              <p>
-                Health Care Point AB grundades 2023 med målet att hjälpa patienter att 
-                hitta rätt behandling via ledande hälsoinrättningar i Turkiet. Företaget 
-                har sitt huvudkontor i Stockholm och består av ett dedikerat team om tio 
-                medarbetare som arbetar exklusivt med hälsoturism och kontorsservice åt 
-                våra samarbetspartners.
-              </p>
-              <p>
-                Genom en stark infrastruktur och ett växande internationellt nätverk kan 
-                vi idag hjälpa patienter från över trettio länder att resa till Turkiet 
-                för medicinska behandlingar. Vår ambition är att bli den ledande 
-                hälsokonsulten i Norden och Europa.
-              </p>
+              <h3>{t.about_3}</h3>
+              <p>{t.about_4}</p>
+              <p>{t.about_5}</p>
             </StoryContent>
             <StoryImageWrapper
               initial={{ opacity: 0, scale: 0.95 }}
@@ -351,26 +346,16 @@ const AboutPage: React.FC = () => {
             >
               <SpecialistsImageSoft
                 src={SpecialistsImage}
-                alt="Specialister som representerar Health Care Point AB:s historia"
+                alt={t.about_6}
               />
             </StoryImageWrapper>
           </StoryGrid>
 
           <StoryGrid style={{ flexDirection: 'row-reverse' }}>
             <StoryContent>
-              <h3>Vår mission</h3>
-              <p>
-                Vi knyter samman patienter med expertläkare, sjukhus och kliniker som har 
-                den specialistkompetens och utrustning som behövs för varje unik 
-                behandlingsresa. Vårt fokus är att skapa trygga och transparenta val av 
-                vårdgivare.
-              </p>
-              <p>
-                Teamet har arbetat som konsulter i olika EU-projekt sedan 2005 och tar 
-                med sig erfarenhet av projektledning, koordinering och evenemangsplanering. 
-                Framåt planerar vi hälsomässor och branschevenemang i Sverige och Europa 
-                för att stärka samarbetet mellan patienter och vårdaktörer.
-              </p>
+              <h3>{t.about_7}</h3>
+              <p>{t.about_8}</p>
+              <p>{t.about_9}</p>
             </StoryContent>
             <StoryImageWrapper
               initial={{ opacity: 0, scale: 0.95 }}
@@ -379,7 +364,7 @@ const AboutPage: React.FC = () => {
             >
               <StoryImage
                 src={FamilyImage}
-                alt="Familj som illustrerar Health Care Point AB:s mission"
+                alt={t.about_10}
               />
             </StoryImageWrapper>
           </StoryGrid>
@@ -388,10 +373,9 @@ const AboutPage: React.FC = () => {
 
       <Section>
         <Container>
-          <SectionTitle>Våra värderingar</SectionTitle>
+          <SectionTitle>{t.about_11}</SectionTitle>
           <SectionSubtitle>
-            Dessa kärnvärden guidar allt vi gör och formar hur vi interagerar 
-            med våra patienter och kollegor.
+            {t.about_12}
           </SectionSubtitle>
 
           <ValuesGrid>
@@ -405,10 +389,9 @@ const AboutPage: React.FC = () => {
               <ValueIcon>
                 <Heart size={40} />
               </ValueIcon>
-              <ValueTitle>Patientfokus</ValueTitle>
+              <ValueTitle>{t.about_13}</ValueTitle>
               <ValueDescription>
-                Vi finns vid patientens sida genom hela behandlingsresan och säkerställer 
-                att varje beslut tas utifrån deras mål och behov.
+                {t.about_14}
               </ValueDescription>
             </ValueCard>
 
@@ -422,10 +405,9 @@ const AboutPage: React.FC = () => {
               <ValueIcon>
                 <Award size={40} />
               </ValueIcon>
-              <ValueTitle>Kvalitetssäkrade partners</ValueTitle>
+              <ValueTitle>{t.about_15}</ValueTitle>
               <ValueDescription>
-                Vårt nätverk omfattar mer än 100 sjukhus och specialistkliniker med 
-                beprövad kompetens och moderna vårdmetoder.
+                {t.about_16}
               </ValueDescription>
             </ValueCard>
 
@@ -439,10 +421,9 @@ const AboutPage: React.FC = () => {
               <ValueIcon>
                 <Shield size={40} />
               </ValueIcon>
-              <ValueTitle>Trygghet och transparens</ValueTitle>
+              <ValueTitle>{t.about_17}</ValueTitle>
               <ValueDescription>
-                Vi arbetar öppet med avtal, behandlingsupplägg och uppföljning så att 
-                patienter och partners kan känna fullt förtroende.
+                {t.about_18}
               </ValueDescription>
             </ValueCard>
 
@@ -456,10 +437,9 @@ const AboutPage: React.FC = () => {
               <ValueIcon>
                 <Users size={40} />
               </ValueIcon>
-              <ValueTitle>Personliga relationer</ValueTitle>
+              <ValueTitle>{t.about_19}</ValueTitle>
               <ValueDescription>
-                Vårt Stockholmsbaserade team bygger långsiktiga relationer med både 
-                patienter och vårdleverantörer.
+                {t.about_20}
               </ValueDescription>
             </ValueCard>
 
@@ -473,10 +453,9 @@ const AboutPage: React.FC = () => {
               <ValueIcon>
                 <Target size={40} />
               </ValueIcon>
-              <ValueTitle>Målinriktad planering</ValueTitle>
+              <ValueTitle>{t.about_21}</ValueTitle>
               <ValueDescription>
-                Varje behandlingsresa planeras i detalj med logistik, konsultationer och 
-                uppföljning som matchar patientens tidsram och förväntningar.
+                {t.about_22}
               </ValueDescription>
             </ValueCard>
 
@@ -490,10 +469,9 @@ const AboutPage: React.FC = () => {
               <ValueIcon>
                 <Eye size={40} />
               </ValueIcon>
-              <ValueTitle>Branschinsikt</ValueTitle>
+              <ValueTitle>{t.about_23}</ValueTitle>
               <ValueDescription>
-                Vi följer utvecklingen inom hälsoturism och arrangerar kommande 
-                hälsomässor och evenemang i Sverige och Europa.
+                {t.about_24}
               </ValueDescription>
             </ValueCard>
           </ValuesGrid>
@@ -502,10 +480,9 @@ const AboutPage: React.FC = () => {
 
       <Section>
         <Container>
-          <SectionTitle>Vårt team</SectionTitle>
+          <SectionTitle>{t.about_25}</SectionTitle>
           <SectionSubtitle>
-            Ett dedikerat Stockholmsbaserat team som koordinerar varje steg i din 
-            behandlingsresa och håller kontakten med våra samarbetspartners.
+            {t.about_26}
           </SectionSubtitle>
 
           <TeamGrid>
@@ -520,9 +497,9 @@ const AboutPage: React.FC = () => {
                 <Stethoscope size={60} />
               </TeamImage>
               <TeamInfo>
-                <TeamName>Hälsokonsultteamet</TeamName>
-                <TeamRole>Patientkoordinatorer</TeamRole>
-                <TeamSpecialty>Personlig rådgivning och matchning av vårdgivare</TeamSpecialty>
+                <TeamName>{t.about_27}</TeamName>
+                <TeamRole>{t.about_28}</TeamRole>
+                <TeamSpecialty>{t.about_29}</TeamSpecialty>
               </TeamInfo>
             </TeamCard>
 
@@ -537,9 +514,9 @@ const AboutPage: React.FC = () => {
                 <Brain size={60} />
               </TeamImage>
               <TeamInfo>
-                <TeamName>Medicinska advisory board</TeamName>
-                <TeamRole>Expertstöd</TeamRole>
-                <TeamSpecialty>Kontinuerlig dialog med specialistläkare och kliniker</TeamSpecialty>
+                <TeamName>{t.about_30}</TeamName>
+                <TeamRole>{t.about_31}</TeamRole>
+                <TeamSpecialty>{t.about_32}</TeamSpecialty>
               </TeamInfo>
             </TeamCard>
 
@@ -554,9 +531,9 @@ const AboutPage: React.FC = () => {
                 <Activity size={60} />
               </TeamImage>
               <TeamInfo>
-                <TeamName>Rese- och logistikgruppen</TeamName>
-                <TeamRole>Planering och support</TeamRole>
-                <TeamSpecialty>Koordinering av reseplaner, avtal och uppföljning</TeamSpecialty>
+                <TeamName>{t.about_33}</TeamName>
+                <TeamRole>{t.about_34}</TeamRole>
+                <TeamSpecialty>{t.about_35}</TeamSpecialty>
               </TeamInfo>
             </TeamCard>
 
@@ -571,9 +548,9 @@ const AboutPage: React.FC = () => {
                 <Users size={60} />
               </TeamImage>
               <TeamInfo>
-                <TeamName>Event- och partnerskapsteamet</TeamName>
-                <TeamRole>Affärsutveckling</TeamRole>
-                <TeamSpecialty>Hälsomässor, workshops och partnerrelationer i Europa</TeamSpecialty>
+                <TeamName>{t.about_36}</TeamName>
+                <TeamRole>{t.about_37}</TeamRole>
+                <TeamSpecialty>{t.about_38}</TeamSpecialty>
               </TeamInfo>
             </TeamCard>
           </TeamGrid>
@@ -582,10 +559,9 @@ const AboutPage: React.FC = () => {
 
       <CertificationsSection>
         <Container>
-          <SectionTitle style={{ color: 'white' }}>Vårt nätverk och vår kompetens</SectionTitle>
+          <SectionTitle style={{ color: 'white' }}>{t.about_39}</SectionTitle>
           <SectionSubtitle style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            Ett starkt partnernätverk, lång erfarenhet av internationella projekt och 
-            kommande evenemang säkerställer att patienter får rätt vård i rätt tid.
+            {t.about_40}
           </SectionSubtitle>
 
           <CertGrid>
@@ -598,9 +574,8 @@ const AboutPage: React.FC = () => {
               <CertIcon>
                 <Shield size={30} />
               </CertIcon>
-              <h3 style={{ marginBottom: '1rem' }}>Certifierade vårdpartners</h3>
-              <p>Över 100 anslutna sjukhus och kliniker i Turkiet och Europa med 
-              dokumenterad expertis.</p>
+              <h3 style={{ marginBottom: '1rem' }}>{t.about_41}</h3>
+              <p>{t.about_42}</p>
             </CertCard>
 
             <CertCard
@@ -612,9 +587,8 @@ const AboutPage: React.FC = () => {
               <CertIcon>
                 <Award size={30} />
               </CertIcon>
-              <h3 style={{ marginBottom: '1rem' }}>EU-projekt sedan 2005</h3>
-              <p>Gedigen erfarenhet av internationella samarbeten, finansiering och 
-              projektledning inom hälsa.</p>
+              <h3 style={{ marginBottom: '1rem' }}>{t.about_43}</h3>
+              <p>{t.about_44}</p>
             </CertCard>
 
             <CertCard
@@ -626,9 +600,8 @@ const AboutPage: React.FC = () => {
               <CertIcon>
                 <Star size={30} />
               </CertIcon>
-              <h3 style={{ marginBottom: '1rem' }}>Hälsomässor och evenemang</h3>
-              <p>Planerade aktiviteter i Sverige och Europa som för samman 
-              patienter, experter och vårdaktörer.</p>
+              <h3 style={{ marginBottom: '1rem' }}>{t.about_43}</h3>
+              <p>{t.about_44}</p>
             </CertCard>
           </CertGrid>
         </Container>

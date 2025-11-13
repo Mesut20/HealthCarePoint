@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import sv from '../../locals/sv.json';
+import en from '../../locals/en.json';
+import tr from '../../locals/tr.json';
+import { useLanguage } from '../../context/LanguageContext';
 import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { 
@@ -376,6 +380,13 @@ const HomePage: React.FC = () => {
   const servicesInView = useInView(servicesRef, { once: true, margin: '-100px' });
   const statsRef = React.useRef(null);
   const statsInView = useInView(statsRef, { once: true, margin: '-100px' });
+  // Use LanguageContext for instant language switching
+  const { language } = useLanguage();
+  const t = useMemo(() => {
+    if (language === 'tr') return tr;
+    if (language === 'en') return en;
+    return sv;
+  }, [language]);
   return (
     <HomeContainer>
       <HeroSection>
@@ -385,16 +396,14 @@ const HomePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Välkommen till Health Care Point AB
+            {t.home_1}
           </HeroTitle>
           <HeroSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Vi är hälsokonsulten som förenar medicinsk expertis, estetiska resultat och 
-            helhetsfokus. Vårt team i Stockholm stöttar dig genom hela resan – från första 
-            konsultation till färdig behandling hos våra samarbetspartner.
+            {t.home_2}
           </HeroSubtitle>
           <ButtonGroup
             initial={{ opacity: 0, y: 30 }}
@@ -407,7 +416,7 @@ const HomePage: React.FC = () => {
               style={{ display: 'inline-flex' }}
             >
               <PrimaryButton to="/kontakt">
-                Kontakta oss
+                {t.home_3}
                 <Calendar size={20} />
               </PrimaryButton>
             </motion.div>
@@ -417,7 +426,7 @@ const HomePage: React.FC = () => {
               style={{ display: 'inline-flex' }}
             >
               <SecondaryButton to="/tjanster">
-                Utforska tjänster
+                {t.home_4}
               </SecondaryButton>
             </motion.div>
           </ButtonGroup>
@@ -470,32 +479,32 @@ const HomePage: React.FC = () => {
                 animate={statsInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <StatNumber>30+</StatNumber>
-                <StatLabel>Länder vi hjälper patienter från</StatLabel>
+                <StatNumber>{t.home_5}</StatNumber>
+                <StatLabel>{t.home_6}</StatLabel>
               </StatItem>
               <StatItem
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={statsInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <StatNumber>100+</StatNumber>
-                <StatLabel>Vårdinrättningar i vårt nätverk</StatLabel>
+                <StatNumber>{t.home_7}</StatNumber>
+                <StatLabel>{t.home_8}</StatLabel>
               </StatItem>
               <StatItem
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={statsInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <StatNumber>10</StatNumber>
-                <StatLabel>Medarbetare inom hälsokonsultation</StatLabel>
+                <StatNumber>{t.home_9}</StatNumber>
+                <StatLabel>{t.home_10}</StatLabel>
               </StatItem>
               <StatItem
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={statsInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <StatNumber>2023</StatNumber>
-                <StatLabel>Grundades i Stockholm</StatLabel>
+                <StatNumber>{t.home_11}</StatNumber>
+                <StatLabel>{t.home_12}</StatLabel>
               </StatItem>
             </StatsGrid>
           </div>
@@ -504,11 +513,9 @@ const HomePage: React.FC = () => {
 
       <Section>
         <Container>
-          <SectionTitle>Våra tjänster</SectionTitle>
+          <SectionTitle>{t.home_13}</SectionTitle>
           <SectionSubtitle>
-            Utforska vårt omfattande utbud av tjänster. Från medicinska behandlingar till 
-            skönhetsvård strävar vi efter att leverera enastående service och resultat som 
-            överträffar dina förväntningar.
+            {t.home_14}
           </SectionSubtitle>
 
           <ServicesGrid ref={servicesRef}>
@@ -521,10 +528,9 @@ const HomePage: React.FC = () => {
               <ServiceIcon>
                 <Sparkles size={40} />
               </ServiceIcon>
-              <ServiceTitle>Skräddarsydd skönhetskonsultation</ServiceTitle>
+              <ServiceTitle>{t.home_15}</ServiceTitle>
               <ServiceDescription>
-                Individuellt anpassad rådgivning som hjälper dig att välja rätt 
-                behandlingar, produkter och planer för att stärka självförtroende och välmående.
+                {t.home_16}
               </ServiceDescription>
             </ServiceCard>
 
@@ -537,10 +543,9 @@ const HomePage: React.FC = () => {
               <ServiceIcon>
                 <Zap size={40} />
               </ServiceIcon>
-              <ServiceTitle>Avancerade medicinska behandlingar</ServiceTitle>
+              <ServiceTitle>{t.home_17}</ServiceTitle>
               <ServiceDescription>
-                Medicinska ingrepp utförda av erfarna specialistläkare med den senaste 
-                tekniken för att möta olika hudtillstånd, åldrande och medicinska behov.
+                {t.home_18}
               </ServiceDescription>
             </ServiceCard>
 
@@ -553,10 +558,9 @@ const HomePage: React.FC = () => {
               <ServiceIcon>
                 <Eye size={40} />
               </ServiceIcon>
-              <ServiceTitle>Spa- och wellnessupplevelser</ServiceTitle>
+              <ServiceTitle>{t.home_19}</ServiceTitle>
               <ServiceDescription>
-                Avkopplande behandlingar, ritualer och personlig uppmärksamhet som 
-                återställer balans, välbefinnande och sinnesfrid.
+                {t.home_20}
               </ServiceDescription>
             </ServiceCard>
 
@@ -569,10 +573,9 @@ const HomePage: React.FC = () => {
               <ServiceIcon>
                 <Scissors size={40} />
               </ServiceIcon>
-              <ServiceTitle>Kirurgiska skönhetsbehandlingar</ServiceTitle>
+              <ServiceTitle>{t.home_21}</ServiceTitle>
               <ServiceDescription>
-                Tillgång till avancerade kirurgiska tekniker med personlig planering, 
-                professionell vård och trygg eftervård.
+                {t.home_22}
               </ServiceDescription>
             </ServiceCard>
 
@@ -585,10 +588,9 @@ const HomePage: React.FC = () => {
               <ServiceIcon>
                 <Star size={40} />
               </ServiceIcon>
-              <ServiceTitle>Patientresor till Turkiet</ServiceTitle>
+              <ServiceTitle>{t.home_23}</ServiceTitle>
               <ServiceDescription>
-                Komplett koordination av hälsoturism – från konsultation och logistik 
-                till stöd under hela behandlingsresan hos våra partners i Turkiet.
+                {t.home_24}
               </ServiceDescription>
             </ServiceCard>
 
@@ -601,10 +603,9 @@ const HomePage: React.FC = () => {
               <ServiceIcon>
                 <Smile size={40} />
               </ServiceIcon>
-              <ServiceTitle>Partnerskap i Europa</ServiceTitle>
+              <ServiceTitle>{t.home_25}</ServiceTitle>
               <ServiceDescription>
-                Ett omfattande nätverk med över hundra vårdinrättningar i Turkiet och 
-                Europa som ger tillgång till rätt expertis och resurser för varje patient.
+                {t.home_26}
               </ServiceDescription>
             </ServiceCard>
           </ServicesGrid>
@@ -613,9 +614,9 @@ const HomePage: React.FC = () => {
 
       <Section style={{ backgroundColor: '#f8fafc' }}>
         <Container>
-          <SectionTitle>Varför välja Health Care Point AB?</SectionTitle>
+          <SectionTitle>{t.home_27}</SectionTitle>
           <SectionSubtitle>
-            Välj Health Care Point AB för ett tryggt och personligt omhändertagande. Vi erbjuder innovativa medicinska behandlingar, avancerad kirurgi och avkopplande spa-upplevelser. Vårt engagerade team guidar dig mot hälsa, skönhet och välbefinnande med fokus på kvalitet, säkerhet och omtanke.
+            {t.home_28}
           </SectionSubtitle>
 
           <FeaturesGrid>
@@ -629,8 +630,8 @@ const HomePage: React.FC = () => {
                   <Shield size={24} />
                 </FeatureIcon>
                 <FeatureText>
-                  <h4>Hälsoturism med ansvar</h4>
-                  <p>Vi matchar varje patient med certifierade sjukhus och kliniker för säkra behandlingsresultat.</p>
+                  <h4>{t.home_29}</h4>
+                  <p>{t.home_30}</p>
                 </FeatureText>
               </FeatureItem>
 
@@ -643,8 +644,8 @@ const HomePage: React.FC = () => {
                   <Award size={24} />
                 </FeatureIcon>
                 <FeatureText>
-                  <h4>Stort vårdnätverk</h4>
-                  <p>Över 100 vårdinrättningar i Turkiet och Europa ger oss flexibilitet att hitta rätt behandling.</p>
+                  <h4>{t.home_31}</h4>
+                  <p>{t.home_32}</p>
                 </FeatureText>
               </FeatureItem>
 
@@ -657,8 +658,8 @@ const HomePage: React.FC = () => {
                   <Clock size={24} />
                 </FeatureIcon>
                 <FeatureText>
-                  <h4>Smidig koordinering</h4>
-                  <p>Vi sköter planering, logistik och uppföljning så att din behandlingsresa blir enkel.</p>
+                  <h4>{t.home_33}</h4>
+                  <p>{t.home_34}</p>
                 </FeatureText>
               </FeatureItem>
 
@@ -671,8 +672,8 @@ const HomePage: React.FC = () => {
                   <Users size={24} />
                 </FeatureIcon>
                 <FeatureText>
-                  <h4>Expertteam i Stockholm</h4>
-                  <p>Vårt team med 10 medarbetare vägleder dig genom varje steg och svarar på alla frågor.</p>
+                  <h4>{t.home_35}</h4>
+                  <p>{t.home_36}</p>
                 </FeatureText>
               </FeatureItem>
 
@@ -685,8 +686,8 @@ const HomePage: React.FC = () => {
                   <Heart size={24} />
                 </FeatureIcon>
                 <FeatureText>
-                  <h4>Helhetsfokus på välbefinnande</h4>
-                  <p>Vi balanserar hälsa, skönhet och trygghet för att överträffa dina förväntningar.</p>
+                  <h4>{t.home_37}</h4>
+                  <p>{t.home_38}</p>
                 </FeatureText>
               </FeatureItem>
             </FeaturesList>
@@ -694,11 +695,11 @@ const HomePage: React.FC = () => {
             <ImagePlaceholder>
               <img 
                 src={LuxuryRoomImage}
-                alt="Hälsa, skönhet och välbefinnande"
+                alt={t.home_39}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
               />
               <ImageOverlayText style={{ position: 'absolute', left: 0, bottom: 0 }}>
-                Hälsa, skönhet och välbefinnande
+                {t.home_39}
               </ImageOverlayText>
             </ImagePlaceholder>
           </FeaturesGrid>

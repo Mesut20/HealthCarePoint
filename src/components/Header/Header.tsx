@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Calendar } from 'lucide-react';
+
 import HCPLogo from '../Assets/HCP.jpg';
+import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '../../context/LanguageContext';
 
 const HeaderContainer = styled.header`
   background: #f5f6fa;
@@ -22,6 +25,7 @@ const Nav = styled.nav`
   align-items: center;
   height: 140px;
   align-items: center;
+  justify-content: flex-end;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     padding: 0 1rem;
@@ -33,12 +37,19 @@ const Logo = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  margin-left: 4.5rem;
+  margin-left: 0;
+  margin-right: 3rem;
   transition: transform 0.2s ease;
 
   &:hover {
     transform: scale(1.05);
   }
+`;
+
+const LeftGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 `;
 
 const LogoImage = styled.img`
@@ -175,16 +186,18 @@ const MobileMenuButton = styled.button`
   }
 `;
 
+
 const Header: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const { language, setLanguage } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
 
   const navItems = [
-    { path: '/', label: 'Hem' },
-    { path: '/om-oss', label: 'Om Oss' },
-    { path: '/tjanster', label: 'Tjänster' },
-    { path: '/kontakt', label: 'Kontakt' },
+    { path: '/', label: language === 'en' ? 'Home' : language === 'tr' ? 'Anasayfa' : 'Hem' },
+    { path: '/om-oss', label: language === 'en' ? 'About Us' : language === 'tr' ? 'Hakkımızda' : 'Om Oss' },
+    { path: '/tjanster', label: language === 'en' ? 'Services' : language === 'tr' ? 'Hizmetler' : 'Tjänster' },
+    { path: '/kontakt', label: language === 'en' ? 'Contact' : language === 'tr' ? 'İletişim' : 'Kontakt' },
   ];
 
   const toggleMobileMenu = () => {
@@ -203,13 +216,19 @@ const Header: React.FC = () => {
     }
   };
 
+  const handleLangChange = (lang: string) => {
+    setLanguage(lang);
+  };
+
   return (
     <HeaderContainer>
       <Nav>
-        <Logo to="/" onClick={() => handleNavClick('/')}> 
-          <LogoImage src={HCPLogo} alt="HealthCarePoint" />
-        </Logo>
-        <NavLinks $isOpen={isMobileMenuOpen} style={{ marginLeft: '1.5rem' }}>
+        <LeftGroup>
+          <Logo to="/" onClick={() => handleNavClick('/')}> 
+            <LogoImage src={HCPLogo} alt="HealthCarePoint" />
+          </Logo>
+        </LeftGroup>
+        <NavLinks $isOpen={isMobileMenuOpen} style={{ marginLeft: 0 }}>
           {navItems.map((item, idx) => (
             <motion.div
               key={item.path}
@@ -239,10 +258,11 @@ const Header: React.FC = () => {
                 onClick={() => handleNavClick('/boka-tid')}
               >
                 <Calendar size={18} />
-                Boka Tid
+                {language === 'en' ? 'Book Now' : language === 'tr' ? 'Randevu Al' : 'Boka Tid'}
               </BookingButton>
             </motion.div>
           </CTAButtons>
+          <LanguageSelector currentLang={language} onChange={handleLangChange} />
         </NavLinks>
         <MobileMenuButton onClick={toggleMobileMenu}>
           <AnimatePresence mode="wait">
@@ -272,6 +292,6 @@ const Header: React.FC = () => {
       </Nav>
     </HeaderContainer>
   );
-};
+}
 
 export default Header;

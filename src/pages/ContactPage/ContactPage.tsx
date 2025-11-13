@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import sv from '../../locals/sv.json';
+import en from '../../locals/en.json';
+import tr from '../../locals/tr.json';
+import { useLanguage } from '../../context/LanguageContext';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
@@ -296,6 +300,10 @@ const ContactPage: React.FC = () => {
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
+  // Use LanguageContext for instant language switching
+  const { language } = useLanguage();
+  const t = language === 'tr' ? tr : language === 'en' ? en : sv;
+
   return (
     <ContactContainer>
       <HeroSection>
@@ -305,15 +313,14 @@ const ContactPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Kontakta oss
+            {t.contact_1}
           </HeroTitle>
           <HeroSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Vi finns här för att hjälpa dig. Kontakta oss för frågor om vård, 
-            bokningar eller allmän information.
+            {t.contact_2}
           </HeroSubtitle>
         </Container>
       </HeroSection>
@@ -331,9 +338,8 @@ const ContactPage: React.FC = () => {
                   <Phone size={24} />
                 </InfoIcon>
                 <InfoContent>
-                  <h3>Telefon</h3>
-                  <p><strong>Växel:</strong> +46723030125</p>
-                  
+                  <h3>{t.contact_3}</h3>
+                  <p><strong>{t.contact_4}</strong></p>
                 </InfoContent>
               </InfoCard>
 
@@ -346,8 +352,8 @@ const ContactPage: React.FC = () => {
                   <Mail size={24} />
                 </InfoIcon>
                 <InfoContent>
-                  <h3>E-post</h3>
-                  <p><strong>Allmänt:</strong> info@hcpab.se</p>
+                  <h3>{t.contact_5}</h3>
+                  <p><strong>{t.contact_6}</strong></p>
                 </InfoContent>
               </InfoCard>
 
@@ -360,10 +366,10 @@ const ContactPage: React.FC = () => {
                   <MapPin size={24} />
                 </InfoIcon>
                 <InfoContent>
-                  <h3>Besöksadress</h3>
-                  <p>Blockvägen 21</p>
-                  <p>147 54 Tumba</p>
-                  <p>Sverige</p>
+                  <h3>{t.contact_7}</h3>
+                  <p>{t.contact_8}</p>
+                  <p>{t.contact_9}</p>
+                  <p>{t.contact_10}</p>
                 </InfoContent>
               </InfoCard>
 
@@ -376,11 +382,10 @@ const ContactPage: React.FC = () => {
                   <Clock size={24} />
                 </InfoIcon>
                 <InfoContent>
-                  <h3>Öppettider</h3>
-                  <p><strong>Mån-Fre:</strong> 09:00 - 15:00</p>
-                  <p><strong>Lördag:</strong> Stängt</p>
-                  <p><strong>Söndag:</strong> Stängt</p>
-                 
+                  <h3>{t.contact_11}</h3>
+                  <p><strong>{t.contact_12}</strong></p>
+                  <p><strong>{t.contact_13}</strong></p>
+                  <p><strong>{t.contact_14}</strong></p>
                 </InfoContent>
               </InfoCard>
             </ContactInfo>
@@ -392,23 +397,23 @@ const ContactPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <CheckCircle size={24} />
-                  <span>Tack för ditt meddelande! Vi återkommer inom 24 timmar.</span>
+                  <span>{t.contact_15}</span>
                 </SuccessMessage>
               )}
 
               <ContactForm onSubmit={handleSubmit(onSubmit)}>
-                <FormTitle>Skicka meddelande</FormTitle>
+                <FormTitle>{t.contact_15}</FormTitle>
                 
                 <FormGrid>
                   <FormGroup>
-                    <Label htmlFor="name">Namn *</Label>
+                    <Label htmlFor="name">{t.contact_16}</Label>
                     <Input
                       id="name"
                       type="text"
-                      placeholder="Ditt fullständiga namn"
+                      placeholder={t.contact_17}
                       hasError={!!errors.name}
                       {...register('name', { 
-                        required: 'Namn är obligatoriskt',
+                        required: t.contact_16,
                         minLength: { value: 2, message: 'Namnet måste vara minst 2 tecken' }
                       })}
                     />
@@ -416,14 +421,14 @@ const ContactPage: React.FC = () => {
                   </FormGroup>
 
                   <FormGroup>
-                    <Label htmlFor="email">E-post *</Label>
+                    <Label htmlFor="email">{t.contact_18}</Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="din@email.se"
+                      placeholder={t.contact_19}
                       hasError={!!errors.email}
                       {...register('email', { 
-                        required: 'E-post är obligatorisk',
+                        required: t.contact_18,
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                           message: 'Ogiltig e-postadress'
@@ -434,24 +439,24 @@ const ContactPage: React.FC = () => {
                   </FormGroup>
 
                   <FormGroup>
-                    <Label htmlFor="phone">Telefon</Label>
+                    <Label htmlFor="phone">{t.contact_20}</Label>
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="070-123 45 67"
+                      placeholder={t.contact_21}
                       {...register('phone')}
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label htmlFor="subject">Ämne *</Label>
+                    <Label htmlFor="subject">{t.contact_22}</Label>
                     <Input
                       id="subject"
                       type="text"
-                      placeholder="Vad gäller ditt meddelande?"
+                      placeholder={t.contact_23}
                       hasError={!!errors.subject}
                       {...register('subject', { 
-                        required: 'Ämne är obligatoriskt',
+                        required: t.contact_22,
                         minLength: { value: 5, message: 'Ämnet måste vara minst 5 tecken' }
                       })}
                     />
@@ -459,13 +464,13 @@ const ContactPage: React.FC = () => {
                   </FormGroup>
 
                   <FormGroup className="full-width">
-                    <Label htmlFor="message">Meddelande *</Label>
+                    <Label htmlFor="message">{t.contact_24}</Label>
                     <TextArea
                       id="message"
-                      placeholder="Beskriv ditt ärende eller dina frågor..."
+                      placeholder={t.contact_25}
                       hasError={!!errors.message}
                       {...register('message', { 
-                        required: 'Meddelande är obligatoriskt',
+                        required: t.contact_24,
                         minLength: { value: 10, message: 'Meddelandet måste vara minst 10 tecken' }
                       })}
                     />
@@ -482,12 +487,12 @@ const ContactPage: React.FC = () => {
                   {isSubmitting ? (
                     <>
                       <div style={{ animation: 'spin 1s linear infinite', width: '20px', height: '20px', border: '2px solid rgba(255,255,255,0.3)', borderTop: '2px solid white', borderRadius: '50%' }} />
-                      Skickar...
+                      {t.contact_26}
                     </>
                   ) : (
                     <>
                       <Send size={20} />
-                      Skicka meddelande
+                      {t.contact_26}
                     </>
                   )}
                 </SubmitButton>
@@ -506,7 +511,7 @@ const ContactPage: React.FC = () => {
             marginBottom: '1rem',
             color: '#1f2937'
           }}>
-            Hitta till oss
+            {t.contact_27}
           </h2>
           <p style={{
             fontSize: '1.2rem',
@@ -514,11 +519,11 @@ const ContactPage: React.FC = () => {
             color: '#6b7280',
             marginBottom: '2rem'
           }}>
-            Vi finns i Tumba med goda kommunikationer och smidiga parkeringsmöjligheter.
+            {t.contact_28}
           </p>
           <MapPlaceholder style={{ justifyContent: 'center' }}>
             <iframe
-              title="Karta över vårt vårdcenter"
+              title={t.contact_27}
               src="https://www.google.com/maps?q=Blockv%C3%A4gen+21,+147+54+Tumba&output=embed"
               width="600"
               height="400"
