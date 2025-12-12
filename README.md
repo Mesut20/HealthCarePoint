@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# HealthCarePoint
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HealthCarePoint is a TypeScript-based web application, designed with React, that focuses on delivering healthcare services online. The application includes key features such as an appointment booking system with unique case numbers and email notifications, multi-language support powered by a LanguageContext, and a responsive design created using styled-components and framer-motion for dynamic animations.
+
+The platform is structured into pages such as the Home Page, Booking Page, About Page, Services Page, and Contact Page, each offering specialized functionality. For example, the Booking Page allows users to schedule appointments, while the Contact Page shares essential contact information, working hours, and location details. Static files and assets, along with react-router-driven navigation, ensure a seamless user experience.
+
+With its modular structure, modern design principles, and adaptability, the “HealthCarePoint” project is geared toward making healthcare services more accessible and user-friendly for diverse audiences.
 
 ## Available Scripts
 
@@ -38,9 +42,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
